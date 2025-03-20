@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model plano {
+  id    Int        @id
+  tipo  plano_tipo
+  preco Float      @db.Float
+  user  user[]
+}
+
+model user {
+  cpf      String @id @db.VarChar(11)
+  nome     String @db.VarChar(255)
+  telefone String @db.VarChar(20)
+  email    String @unique(map: "email") @db.VarChar(255)
+  password String @db.VarChar(255)
+  planoId  Int
+  plano    plano  @relation(fields: [planoId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_1")
+
+  @@index([planoId], map: "planoId")
+}
+
+enum plano_tipo {
+  DIAMANTE
+  OURO
+  PRATA
+}
