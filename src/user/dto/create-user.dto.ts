@@ -1,6 +1,8 @@
 import { IsEmail, IsNotEmpty, IsNumber, IsString, Length } from 'class-validator';
+import { identity } from 'rxjs';
 
 export class CreateUserDto {
+
   @IsString()
   @Length(11, 11)
   cpf: string;

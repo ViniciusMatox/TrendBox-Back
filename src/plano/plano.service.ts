@@ -9,7 +9,7 @@ export class PlanoService {
   async create(createPlanoDto: CreatePlanoDto) {
     return this.prisma.plano.create({
       data: {
-        id: createPlanoDto.id, // Agora ele é obrigatório
+        ID: createPlanoDto.ID, // Agora ele é obrigatório
         tipo: createPlanoDto.tipo,
         preco: createPlanoDto.preco,
       },
@@ -20,8 +20,8 @@ export class PlanoService {
     return this.prisma.plano.findMany();
   }
 
-  async findOne(id: number) {
-    return this.prisma.plano.findUnique({ where: { id } });
+  async findOne(ID: number) {
+    return this.prisma.plano.findUnique({ where: { ID } });
   }
   
 }

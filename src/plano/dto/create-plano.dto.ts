@@ -1,10 +1,11 @@
 import { IsEnum, IsNumber, IsNotEmpty } from 'class-validator';
 import { TipoPlano } from '@prisma/client';
 
+
 export class CreatePlanoDto {
   @IsNumber()
   @IsNotEmpty()
-  id: number; 
+  ID: number; 
 
   @IsEnum(TipoPlano)
   @IsNotEmpty()

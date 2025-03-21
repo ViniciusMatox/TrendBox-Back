@@ -8,25 +8,26 @@ datasource db {
 }
 
 model plano {
-  id    Int        @id
-  tipo  plano_tipo
+  ID    Int        @id
+  tipo  TipoPlano
   preco Float      @db.Float
   user  user[]
 }
 
 model user {
-  cpf      String @id @db.VarChar(11)
+  ID       Int    @id @default(autoincrement())
+  cpf      String @unique @db.VarChar(11)
   nome     String @db.VarChar(255)
   telefone String @db.VarChar(20)
   email    String @unique(map: "email") @db.VarChar(255)
   password String @db.VarChar(255)
   planoId  Int
-  plano    plano  @relation(fields: [planoId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_1")
+  plano    plano  @relation(fields: [planoId], references: [ID], onDelete: NoAction, onUpdate: NoAction, map: "user_ibfk_1")
 
   @@index([planoId], map: "planoId")
 }
 
-enum plano_tipo {
+enum TipoPlano {
   DIAMANTE
   OURO
   PRATA
