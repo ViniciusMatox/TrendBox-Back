@@ -8,9 +8,9 @@ datasource db {
 }
 
 model plano {
-  ID    Int        @id
   tipo  TipoPlano
-  preco Float      @db.Float
+  preco Float     @db.Float
+  ID    Int       @id
   user  user[]
 }
 
